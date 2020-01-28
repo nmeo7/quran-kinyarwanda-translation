@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, FlatList, StyleSheet, View, Share } from 'react-native';  
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
+import { Text, Button } from 'native-base';
 
 const surahs = require('./assets/surahs.json');
   
@@ -29,20 +29,14 @@ class SectionListBasics extends Component {
   };  
 
   _renderItem = ({item}) => (
-    <Content>
-      <Card style={{flex: 0, backgroundColor: "#5ead97"  }}>
-        <CardItem>
-          <Left>
-            <Text style={styles.item} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })}>{item.key}</Text>
-            <Body>
+    <View style={{ flex: 1, flexDirection: 'row' }} >
+            <Text style={{ padding: 20, width: 70 }} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })}>{item.key}</Text>
+            <View style = {{ flex: 1 }} >
               <Text style={styles.item} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })}>Sourate {item.tname}</Text>
               <Text style={styles.item} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })} note>{item.type} - {item.ayas} Ayat</Text>
-            </Body>
-            <Text style={styles.item} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })}>{item.page}</Text>
-          </Left>
-        </CardItem>
-      </Card>
-    </Content>
+            </View>
+            <Text style={{ padding: 20 }} onPress={() => this.props.navigation.navigate('Details', { itemId: item.page })}>{item.page}</Text>
+    </View>
    )
 
    _renderHeader = ({section}) => (
@@ -172,9 +166,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#8fb1aa',  
     },  
     item: {  
-        padding: 10,  
-        fontSize: 18,  
-        height: 44,  
+        fontSize: 18,
     }  
 })  
   
